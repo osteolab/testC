@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <title>Cycle de conférences</title>
+  <meta name='theme-color' content='#ebe8dd'>
+  <link rel='icon' type='image/x-icon' href='favicon.ico'>
+  <link rel='stylesheet' href='styles.css'>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap' rel='stylesheet'>
+  <script src='https://kit.fontawesome.com/aefb5f6e60.js' crossorigin='anonymous'></script>
+  <script src='https://code.jquery.com/jquery-3.6.0.min.js' integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=' crossorigin='anonymous'></script>
+</head>
+
+<body>
+  <h1 id='title'>Cycle<br/>de<br/>conférences</h1>
+  <h2>Licence 3 de Physique de Rennes | Amphi C</h2>
+  <div id='events'></div>
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      events_div = $('#events');
+      $('h1').css('margin-left',events_div.css('margin-left'));
+      $('h2').css('margin-left',events_div.css('margin-left'));
+      $.getJSON('events.json', function(data) {
+        events = data['events'];
+        $.each(events, function(key, event) {
+          //Link
+          event_a = $(document.createElement('a'));
+          event_a.addClass('event_a');
+          event_a.attr('href','./conference.html?author='+event['author'].replace(' & ',' et '));
+          //Div
+          event_div = $(document.createElement('div'));
+          event_div.addClass('event');
+          //Subject
+          event_subject_p = $(document.createElement('p'));
+          event_subject_p.addClass('event_subject');
+          event_subject_p.html(event['subject']);
+          event_subject_p.appendTo(event_div);
+          //Author
+          event_author_p = $(document.createElement('p'));
+          event_author_p.addClass('event_author');
+          event_author_p.html(event['author']);
+          event_author_p.appendTo(event_div);
+          //Description
+          event_description_p = $(document.createElement('p'));
+          event_description_p.addClass('event_description');
+          event_description_p.html(event['description']);
+          event_description_p.appendTo(event_div);
+          //Footer Info Div
+          event_footer = $(document.createElement('div'));
+          event_footer.addClass('event_footer');
+          //Download link
+          event_download_p = $(document.createElement('p'));
+          event_download_p.addClass('event_download');
+          if (event['download_link'] == ''){
+            event_download_p.addClass('download_unavailable');
+            event_download_p.html('<i class="fas fa-download"></i>Pas de diapo disponible pour l\'instant');
+          }
+          else{
+            event_download_p.html('<a href=pdfs/' + event['download_link'] + ' target="_" class="download_link"><i class="fas fa-download"></i>diapo.pdf</a>');
+          }
+          event_download_p.appendTo(event_footer);
+          //Date
+          event_date_p = $(document.createElement('p'));
+          event_date_p.addClass('event_date');
+          event_date_p.html('<i class="far fa-calendar-alt"></i></i></i>Le ' + event['date'] + ' | 16h15-17h');
+          event_date_p.appendTo(event_footer);
+
+          event_footer.appendTo(event_div);
+          event_div.appendTo(event_a);
+          event_a.appendTo(events_div);
+        });
+      });
+    });
+
+    $(window).resize(function() {
+      $('h1').css('margin-left',events_div.css('margin-left'));
+      $('h2').css('margin-left',events_div.css('margin-left'));
+    });
+  </script>
+</body>
+
+</html>

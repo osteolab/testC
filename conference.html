@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <title>Conférence de</title>
+  <meta name='theme-color' content='#ebe8dd'>
+  <link rel='icon' type='image/x-icon' href='favicon.ico'>
+  <link rel='stylesheet' href='styles.css'>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap' rel='stylesheet'>
+  <script src='https://kit.fontawesome.com/aefb5f6e60.js' crossorigin='anonymous'></script>
+  <script src='https://code.jquery.com/jquery-3.6.0.min.js' integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=' crossorigin='anonymous'></script>
+</head>
+
+<body>
+  <h1 id='title'>Conférence<br/>de<br/></h1>
+  <h2 id='event_date'></h2>
+  <h2 id='event_place'></h2>
+  <div id='event_content'></div>
+  <script type='text/javascript'>
+    url_string = window.location.href;
+    url = new URL(url_string);
+    author = url.searchParams.get("author").replace(' et ',' & ');
+    console.log(author)
+    $(document).ready(function() {
+      event_content_div = $('#event_content');
+      $('h1').css('margin-left',event_content_div.css('margin-left'));
+      $('h2').css('margin-left',event_content_div.css('margin-left'));
+      $.getJSON('events.json', function(data) {
+        events = data['events'];
+        $.each(events, function(key, event) {
+          if (event['author'] == author){
+            document.title = event['subject'];
+            //Subject
+            $('#title').html(event['subject']);
+            $('#event_date').html('<i class="far fa-calendar-alt"></i></i></i>Le ' + event['date'] + ' | 16h15-17h');
+            $('#event_place').html('<i class="fas fa-map-marker-alt"></i>Amphi C');
+            //Author
+            event_author_p = $(document.createElement('p'));
+            event_author_p.addClass('event_author');
+            event_author_p.html(event['author']);
+            event_author_p.appendTo(event_content_div);
+            //Description
+            event_description_p = $(document.createElement('p'));
+            event_description_p.addClass('event_description');
+            event_description_p.html(event['description']);
+            event_description_p.appendTo(event_content_div);
+            //Video link
+            if (event['video_link'] != ''){
+              event_video = $('<iframe class="video_frame" width=1920 src="' + event['video_link'] + '" title="Conférence" frameborder="0" allowfullscreen></iframe>');
+              event_video.appendTo(event_content_div);
+              $('.video_frame').attr('width',parseInt($('.video_frame').css('width')));
+              $('.video_frame').attr('height',parseInt($('.video_frame').css('width'))/16*9);
+            }
+            //Download link
+            event_download_p = $(document.createElement('p'));
+            event_download_p.addClass('event_download');
+            if (event['download_link'] == ''){
+              event_download_p.addClass('download_unavailable');
+              event_download_p.html('<i class="fas fa-download"></i>Pas de diapo disponible pour l\'instant.');
+            }
+            else{
+              event_download_p.html('<a href=pdfs/' + event['download_link'] + ' target="_" class="download_link"><i class="fas fa-download"></i>diapo.pdf</a>');
+            }
+            event_download_p.appendTo(event_content_div);
+          }
+        });
+      });
+    });
+
+    $(window).resize(function() {
+      $('h1').css('margin-left',event_content_div.css('margin-left'));
+      $('h2').css('margin-left',event_content_div.css('margin-left'));
+    });
+  </script>
+</body>
+
+</html>

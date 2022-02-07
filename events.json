@@ -1,0 +1,52 @@
+{
+    "events": [
+      {
+        "subject": "Introduction aux réseaux de neurones",
+        "description": "Conférence sur le fonctionnement des réseaux de neurones, modèles d'intelligence artificielle, par une approche mathématique. Exemple simple de création d'un réseau de neurones classifiant et résolvant des équations mathématiques.",
+        "author": "Elisa & Tristan",
+        "download_link": "",
+        "video_link": "",
+        "date": "10 Février 2022"
+      },
+      {
+        "subject": "L'effet de serre",
+        "description": "Lors de cette conférence, nous allons étudier l'un des mécanismes pour décrire la température terrestre : l'effet de serre. Nous allons établir la nécessité du modèle, puis donner un bref historique de sa formation et enfin le principe du modèle et son importance actuelle.",
+        "author": "Jacques",
+        "download_link": "",
+        "video_link": "",
+        "date": "3 Mars 2022"
+      },
+      {
+        "subject": "Formation des Tornades supercellulaires",
+        "description": "Conférence en 2 parties :<br/>Première partie : explication théorique de la formation des tornades supercellulaires (conditions de formation, échelle de puissance...).<br/>Deuxième partie : Comparaison avec un cas réel : la tornade EF4 entre Nord-Pas-de-Calais et Belgique le 3 Aout 2008.",
+        "author": "Gabriel",
+        "download_link": "",
+        "video_link": "",
+        "date": "10 Mars 2022"
+      },
+      {
+        "subject": "Simulation moléculaire : une application numérique de la physique statistique",
+        "description": "Nous avons étudié au premier semestre la physique statistique, mais à quoi peut-on concrètement l'appliquer ? C'est à l'aide de la simulation moléculaire et plus particulièrement de la dynamique moléculaire que je vais vous présenter des exemples d'applications numériques de la physique statistique, ainsi que de lois fondamentales de la physique.",
+        "author": "Camille",
+        "download_link": "",
+        "video_link": "",
+        "date": "17 Mars 2022"
+      },
+      {
+        "subject": "Mouvements de foules & mécanique des fluides",
+        "description": "Cette conférence a pour but d'étudier les mouvements de foules et les différentes modélisations possibles. La mécanique des fluides qui régit ces systèmes y sera décrite de façon synthétique.",
+        "author": "Malo & Merry",
+        "download_link": "",
+        "video_link": "",
+        "date": "24 Mars 2022"
+      },
+      {
+        "subject": "Hawking radiation",
+        "description": "Hawking radiation is the phenomenon that theorizes that black holes, objects that are normally thought to capture anything in their environment, actually emit some radiation from the area near its event horizon.",
+        "author": "Ethan",
+        "download_link": "",
+        "video_link": "",
+        "date": "31 Mars 2022"
+      }
+    ]
+}
