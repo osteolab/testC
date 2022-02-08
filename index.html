@@ -61,11 +61,11 @@
           event_download_p.addClass('event_download');
           if (event['download_link'] == ''){
             event_download_p.addClass('download_unavailable');
-            event_download_p.html('<i class="fas fa-download"></i>Pas de diapo disponible pour l\'instant');
+            event_download_p.html('<i class="fas fa-download"></i>Data is not \'available');
           }
           else{
             //event_download_p.html('<a href=pdfs/' + event['download_link'] + ' target="_" class="download_link"><i class="fas fa-download"></i>journal_paper.pdf</a>');
-            event_download_p.html('<a href=raw/main/paper/' + event['download_link'] + ' target="_" class="download_link"><i class="fas fa-download"></i>journal_paper.pdf</a>');
+            event_download_p.html('<a href=paper/' + event['download_link'] + ' target="_" class="download_link"><i class="fas fa-download"></i>journal_paper.pdf</a>');
 
           }
           event_download_p.appendTo(event_footer);
